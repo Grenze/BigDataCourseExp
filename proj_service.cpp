@@ -12,7 +12,8 @@
 // GoodsName  :    "$GoodsName"    "UsrName1,UsrName2,..."
 
 Service::Service() :driver_(new Driver()) {
-    driver_->OpenDB("/dev/shm");   // tempfs will be faster
+    driver_->OpenDB("/dev/shm/leveldb");   // tempfs will be faster
+    PrintUsage();
 }
 
 Service::~Service() {
@@ -28,7 +29,7 @@ void Service::ParseCommandLine() {
 
     leveldb::Slice tmp;
 
-    bool ok = true; // no error occurred
+    //bool ok = true; // no error occurred
     bool quit = false;
 
     while (true) {
@@ -107,7 +108,7 @@ void Service::ParseCommandLine() {
 
 void Service::PrintUsage() {
     std::cout << "Usage: \n"
-                 "1.PrintTopKGoodsWithin start_time= end_time= \n"
+                 "1.PrintTopKGoodsWithin start_time= end_time= K= \n"
                  "2.PrintTopKGoodsBoughtBy username= K= \n"
                  "3.PrintTopKUsrWhoBought  goodsname= K= \n"
                  "4.Quit \n"

@@ -172,13 +172,13 @@ bool Driver::OpenDB(const std::string& dir) {
 void Driver::CloseDB() {
     delete db_;
     db_ = nullptr;
-    std::cout << "Database in " << directory_ << " Closed" << std::endl;
+    //std::cout << "Database in " << directory_ << " Closed" << std::endl;
 }
 
 void Driver::DeleteDB() {
     CloseDB();
     leveldb::DestroyDB(directory_, options_);
-    std::cout << "Database in " << directory_ <<" Deleted" << std::endl;
+    //std::cout << "Database in " << directory_ <<" Deleted" << std::endl;
 }
 
 // return true iff found
@@ -286,11 +286,11 @@ bool Driver::ReadReverse(bool checksum) {
 // return false iff error occurred
 bool Driver::CheckStatus(bool print) const {
     if (!status_.ok()) {
-        std::cout << status_.ToString() << std::endl;
+        //std::cout << status_.ToString() << std::endl;
         return false;
     } else {
         if (print) {
-            std::cout << "Operation Succeeded" << std::endl;
+            //std::cout << "Operation Succeeded" << std::endl;
         }
         return true;
     }
